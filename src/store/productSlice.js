@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productList: [],
-  shoppingList: []
+  shoppingList: [],
 };
 const productSlice = createSlice({
   name: "storePage",
@@ -13,8 +13,8 @@ const productSlice = createSlice({
     },
     shoppingList: (state, action) => {
       state.shoppingList = action.payload;
-    }
-  }
+    },
+  },
 });
 export const { productList, shoppingList } = productSlice.actions;
 export default productSlice.reducer;

@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 const ShoppingList = () => {
   const { shoppingList } = useSelector((state) => state.storePage);
   return (
-    <div>
+    <div className="w-[50%]">
       {shoppingList.map((item) => (
-        <div className="flex justify-between w-[40%] mb-5">
+        <div className="flex justify-between w-[90%] mb-5">
           <img className="w-[50px]" src={item.img} alt={item.title} />
           <div className="w-[50%]">
             <p>{item.title}</p>

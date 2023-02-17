@@ -10,11 +10,11 @@ function App() {
 
   const dispatch = useDispatch();
   dispatch(productList(dataList));
-  dispatch(shoppingList(dataList));
+  // dispatch(shoppingList(dataList));
   return (
     <div>
       <Header />
-      {!storePage ? <Store /> : <CartPage />}
+      {storePage ? <Store /> : <CartPage />}
     </div>
   );
 }

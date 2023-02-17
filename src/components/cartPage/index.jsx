@@ -1,4 +1,5 @@
 import React from "react";
+import PriceCard from "./PriceCard";
 import ShoppingList from "./ShoppingList";
 
 const CartPage = () => {
@@ -6,23 +7,9 @@ const CartPage = () => {
     <div className="mt-8">
       <h2 className="text-center">CART</h2>
       <p className="text-center">This is the cart page.</p>
-      <div>
+      <div className="flex gap-8 w-[100%] mt-8">
         <ShoppingList />
-        <div className="border-2 border-gray-200 p-3 w-[20%]">
-          <div className="mb-3">
-            <p className="text-gray-500">Total Items</p>
-            <p>3</p>
-          </div>
-          <div className="mb-3">
-            <p className="text-gray-500">Total Payment</p>
-            <p>$ 5</p>
-          </div>
-          <hr />
-          <div>
-            <button>Check Out</button>
-            <button>Clear</button>
-          </div>
-        </div>
+        <PriceCard />
       </div>
     </div>
   );
