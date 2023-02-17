@@ -1,8 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromList } from "../../store/productSlice";
 
 const ShoppingList = () => {
   const { shoppingList } = useSelector((state) => state.storePage);
+  const dispatch = useDispatch();
+  const removeItem = (id) => {
+    dispatch(removeFromList(id));
+  };
   return (
     <div className="w-[50%]">
       {shoppingList.map((item) => (
@@ -12,10 +17,15 @@ const ShoppingList = () => {
             <p>{item.title}</p>
             <p className="text-gray-500 text-xs">price: ${item.price}</p>
           </div>
-          <p className="text-gray-500 text-xs">Qty:1</p>
+          <p className="text-gray-500 text-xs">Qty:{item.qty}</p>
           <div>
             <button className="bg-black px-2 text-white mr-1">+</button>
-            <button className="bg-red-500 px-2 text-white">d</button>
+            <button
+              className="bg-red-500 px-2 text-white"
+              onClick={() => removeItem(item.id)}
+            >
+              d
+            </button>
           </div>
         </div>
       ))}{" "}
