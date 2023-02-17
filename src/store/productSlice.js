@@ -2,19 +2,28 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productList: [],
-  shoppingList: [],
+  shoppingList: []
 };
 const productSlice = createSlice({
   name: "storePage",
   initialState,
   reducers: {
-    productList: (state, action) => {
+    addToProductList: (state, action) => {
       state.productList = action.payload;
     },
-    shoppingList: (state, action) => {
-      state.shoppingList = action.payload;
-    },
-  },
+    addToShoppingList: (state, action) => {
+      const copyShoppingList = [...state.shoppingList];
+      const existence = copyShoppingList.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (existence >= 0) {
+        copyShoppingList[existence].qty += 1;
+        state.shoppingList = copyShoppingList;
+      } else {
+        state.shoppingList = [...state.shoppingList, action.payload];
+      }
+    }
+  }
 });
-export const { productList, shoppingList } = productSlice.actions;
+export const { addToProductList, addToShoppingList } = productSlice.actions;
 export default productSlice.reducer;

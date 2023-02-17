@@ -1,18 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { shoppingList } from "../../store/productSlice";
+import { addToShoppingList } from "../../store/productSlice";
 
 const ProductsContainer = () => {
-  const productList = useSelector((state) => state.storePage.productList);
+  const { productList } = useSelector((state) => state.storePage);
+  const { shoppingList } = useSelector((state) => state.storePage);
   const dispatch = useDispatch();
 
-  const addToCart = (id) => {
-    const selectedProduct = productList.find((item) => item.id === id);
-    console.log(selectedProduct);
-
-    // dispatch(shoppingList(id));
+  const addToCart = (product) => {
+    dispatch(
+      addToShoppingList({
+        ...product,
+        qty: 1
+      })
+    );
   };
-
+  console.log(shoppingList);
   return (
     <div className="px-8 mt-6">
       <div className="flex justify-between mb-5">
@@ -36,7 +39,7 @@ const ProductsContainer = () => {
               <button className="text-gray-500 px-2 py-1">DETAILS</button>
               <button
                 className="bg-black text-white px-2 py-1"
-                onClick={() => addToCart(item.id)}
+                onClick={() => addToCart(item)}
               >
                 ADD TO CART
               </button>
